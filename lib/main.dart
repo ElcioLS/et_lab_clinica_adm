@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:et_lab_clinica_adm/src/pages/login/login_router.dart';
+
 import 'package:et_lab_clinica_adm/src/pages/splash/splash_page.dart';
 import 'package:et_lab_clinica_adm/src/bindings/lab_clinica_application_binding.dart';
 import 'package:et_lab_clinica_core/et_lab_clinica_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
+
+import 'src/pages/home/home_router.dart';
+import 'src/pages/login/login_router.dart';
 
 void main() {
   runZonedGuarded(() async {
@@ -28,11 +31,10 @@ class LabClinicaAdm extends StatelessWidget {
       binding: LabClinicaApplicationBinding(),
       pagesBuilders: [
         FlutterGetItPageBuilder(page: (_) => const SplashPage(), path: '/'),
-        FlutterGetItPageBuilder(
-            page: (_) => const Text('Estou na HOME'), path: '/home'),
       ],
       pages: const [
         LoginRouter(),
+        HomeRouter(),
       ],
     );
   }
