@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:et_lab_clinica_adm/pages/splash/splash_page.dart';
+import 'package:et_lab_clinica_adm/src/bindings/lab_clinica_application_binding.dart';
 import 'package:et_lab_clinica_core/et_lab_clinica_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
@@ -23,6 +24,7 @@ class LabClinicaAdm extends StatelessWidget {
   Widget build(BuildContext context) {
     return LabClinicaCoreConfig(
       title: 'Lab Clinica ADM',
+      binding: LabClinicaApplicationBinding(),
       pagesBuilders: [
         FlutterGetItPageBuilder(
           page: (_) => const SplashPage(),

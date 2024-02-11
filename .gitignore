@@ -30,6 +30,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/.vscode/
+/windows/
 
 # Symbolication related
 app.*.symbols
