@@ -59,7 +59,7 @@ class AttendantDeskAssignmentRepositoryImpl
   //   final Response(
   //     data: List(first: {'id': String id, 'desk_number': int deskNumber})
   //   ) = await restClient.auth.get('/attendantAssignment', queryParameters: {
-  //     'user_id': '#userAutoRef',
+  //     'user_id': '#userAuthRef',
   //   });
 
   //   return (
@@ -69,10 +69,9 @@ class AttendantDeskAssignmentRepositoryImpl
   // }
 
   Future<({String id, int deskNumber})?> _getDeskByUser() async {
-    final Response(:List data) =
-        await restClient.auth.get('/attendantDeskAssignment', queryParameters: {
-      'user_id': '#userAutoRef',
-    });
+    final Response(:List data) = await restClient.auth.get(
+        '/attendantDeskAssignment',
+        queryParameters: {'user_id': '#userAuthRef'});
     if (data
         case List(
           isNotEmpty: true,
@@ -84,5 +83,20 @@ class AttendantDeskAssignmentRepositoryImpl
       );
     }
     return null;
+  }
+
+  @override
+  Future<Either<RepositoryException, Unit>> getDeskAssignment() async {
+    try {
+      final Response(data: List(first: data)) = await restClient.auth
+          .get('/attendantDeskAssignment', queryParameters: {
+        'user_id': "#userAuthRef",
+      });
+
+      return (data['desk_number']);
+    } on DioException catch (e, s) {
+      log('Erro ao buscar número do guichê', error: e, stackTrace: s);
+      return Left(RepositoryException());
+    }
   }
 }

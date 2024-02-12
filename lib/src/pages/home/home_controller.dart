@@ -1,6 +1,6 @@
 import 'package:et_lab_clinica_core/et_lab_clinica_core.dart';
 import 'package:asyncstate/asyncstate.dart' as asyncState;
-import 'package:et_lab_clinica_adm/src/repositories/user/attendant_desk_assignment/attendant_desk_assignment_repository.dart';
+import 'package:et_lab_clinica_adm/src/repositories/attendant_desk_assignment/attendant_desk_assignment_repository.dart';
 
 class HomeController with MessageStateMixin {
   HomeController({
