@@ -4,8 +4,8 @@ import 'package:signals_flutter/signals_flutter.dart';
 
 import '../../services/call_next_patient/call_next_patient_service.dart';
 
-class PreCheckinContoller with MessageStateMixin {
-  PreCheckinContoller({
+class PreCheckinController with MessageStateMixin {
+  PreCheckinController({
     required CallNextPatientService callNextPatientService,
   }) : _callNextPatientService = callNextPatientService;
 
