@@ -9,8 +9,10 @@ class CheckinRouter extends FlutterGetItPageRouter {
   const CheckinRouter({super.key});
 
   @override
-  List<Bind<Object>> get bindings =>
-      [Bind.lazySingleton((i) => CheckinController())];
+  List<Bind<Object>> get bindings => [
+        Bind.lazySingleton(
+            (i) => CheckinController(patientInformationFormRepository: i()))
+      ];
 
   @override
   String get routeName => '/checkin';
