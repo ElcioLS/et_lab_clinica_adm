@@ -28,12 +28,15 @@ class HomeController with MessageStateMixin {
         showError('Erro ao iniciar Guichê');
       case Right():
         final resultNextPatient = await _callNextPatientService.execute();
+
         switch (resultNextPatient) {
           case Left():
             showError('Erro ao chamar o próximo paciente');
+
           case Right(value: final form?):
             asyncstate.AsyncState.hide();
             _informationForm.value = form;
+
           case Right(value: _):
             asyncstate.AsyncState.hide();
             showInfo('Nenhum paciente aguardando');
