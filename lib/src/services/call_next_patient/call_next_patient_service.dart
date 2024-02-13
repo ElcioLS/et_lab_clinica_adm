@@ -33,15 +33,18 @@ class CallNextPatientService {
   }
 
   Future<Either<RepositoryException, PatientInformationFormModel?>>
-      updatePainel(PatientInformationFormModel form) async {
-    final resultDesk =
+      updatePainel(
+    PatientInformationFormModel form,
+  ) async {
+    final response =
         await attendantDeskAssignmentRepository.getDeskAssignment();
-    switch (resultDesk) {
+
+    switch (response) {
       case Left(value: final exception):
         return Left(exception);
       case Right(value: final deskNumber):
-        final painelResult = await painelRepository.callOnPainel(
-            form.password, deskNumber as int);
+        final painelResult =
+            await painelRepository.callOnPainel(form.password, deskNumber);
 
         switch (painelResult) {
           case Left(value: final exception):
@@ -52,6 +55,7 @@ class CallNextPatientService {
                   'ATENÇÃO! Não foi possível chamar o paciente'),
             );
             return Right(form);
+
           case Right():
             return Right(form);
         }

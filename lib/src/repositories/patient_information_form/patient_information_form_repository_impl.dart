@@ -15,12 +15,14 @@ class PatientInformationFormRepositoryImpl
   @override
   Future<Either<RepositoryException, PatientInformationFormModel?>>
       callNextToCheckin() async {
-    final Response(:List data) = await restClient.auth
-        .get('/patientInformationForm', queryParameters: {
-      'status': PatientInformationFormStatus.wainting.id,
-      'page': 1,
-      'limit': 1
-    });
+    final Response(:List data) = await restClient.auth.get(
+      '/patientInformationForm',
+      queryParameters: {
+        'status': PatientInformationFormStatus.waiting.id,
+        'page': 1,
+        'limit': 1,
+      },
+    );
 
     if (data.isEmpty) {
       return Right(null);
@@ -28,15 +30,13 @@ class PatientInformationFormRepositoryImpl
 
     final formData = data.first;
     final updateStatusResult = await updateStatus(
-      formData['id'],
-      PatientInformationFormStatus.checkIn,
-    );
+        formData['id'], PatientInformationFormStatus.checkedIn);
 
     switch (updateStatusResult) {
       case Left(value: final exception):
         return Left(exception);
       case Right():
-        formData['status'] = PatientInformationFormStatus.checkIn.id;
+        formData['status'] = PatientInformationFormStatus.checkedIn.id;
         formData['patient'] = await _getPatient(formData['patient_id']);
         return Right(PatientInformationFormModel.fromJson(formData));
     }
@@ -57,7 +57,7 @@ class PatientInformationFormRepositoryImpl
   }
 
   Future<Map<String, dynamic>> _getPatient(String id) async {
-    final Response(:data) = await restClient.auth.get('/patient/$id');
+    final Response(:data) = await restClient.auth.get('/patients/$id');
     return data;
   }
 }

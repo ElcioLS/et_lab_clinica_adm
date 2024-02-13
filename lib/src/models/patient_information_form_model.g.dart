@@ -34,7 +34,7 @@ Map<String, dynamic> _$PatientInformationFormModelToJson(
     };
 
 const _$PatientInformationFormStatusEnumMap = {
-  PatientInformationFormStatus.wainting: 'Waiting',
-  PatientInformationFormStatus.checkIn: 'Checked In',
+  PatientInformationFormStatus.waiting: 'Waiting',
+  PatientInformationFormStatus.checkedIn: 'Checked In',
   PatientInformationFormStatus.beingAttended: 'Being Attended',
 };

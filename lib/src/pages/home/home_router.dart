@@ -11,10 +11,10 @@ class HomeRouter extends FlutterGetItPageRouter {
 
   @override
   List<Bind<Object>> get bindings => [
-        Bind.lazySingleton<AttendantDeskAssignmentRepository>(
-            (i) => AttendantDeskAssignmentRepositoryImpl(restClient: i())),
-        Bind.lazySingleton(
-            (i) => HomeController(attendantDeskAssignmentRepository: i())),
+        Bind.lazySingleton((i) => HomeController(
+              attendantDeskRepository: i(),
+              callNextPatientService: i(),
+            )),
       ];
 
   @override

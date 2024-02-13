@@ -43,6 +43,43 @@ class AttendantDeskAssignmentRepositoryImpl
     }
   }
 
+  Future<({String id, int deskNumber})?> _getDeskByUser() async {
+    final Response(:List data) = await restClient.auth.get(
+      '/attendantDeskAssignment',
+      queryParameters: {'user_id': '#userAuthRef'},
+    );
+
+    if (data
+        case List(
+          isNotEmpty: true,
+          first: {'id': final String id, 'desk_number': final int deskNumber},
+        )) {
+      return (id: id, deskNumber: deskNumber);
+    }
+
+    return null;
+  }
+
+  @override
+  Future<Either<RepositoryException, int>> getDeskAssignment() async {
+    try {
+      final Response(data: List(first: data)) = await restClient.auth.get(
+        '/attendantDeskAssignment',
+        queryParameters: {
+          'user_id': '#userAuthRef',
+        },
+      );
+      return Right(data['desk_number']);
+    } on DioException catch (e, s) {
+      log('Erro ao buscar número do guichê', error: e, stackTrace: s);
+      return Left(RepositoryException());
+    }
+  }
+}
+
+
+
+
   // Future<({String id, int deskNumber})> _getDeskByUser() async {
   //   final Response(data: List(first: data)) =
   //       await restClient.auth.get('/attendantAssignment', queryParameters: {
@@ -67,36 +104,3 @@ class AttendantDeskAssignmentRepositoryImpl
   //     deskNumber: deskNumber,
   //   );
   // }
-
-  Future<({String id, int deskNumber})?> _getDeskByUser() async {
-    final Response(:List data) = await restClient.auth.get(
-        '/attendantDeskAssignment',
-        queryParameters: {'user_id': '#userAuthRef'});
-    if (data
-        case List(
-          isNotEmpty: true,
-          first: {'id': String id, 'desk_number': int deskNumber}
-        )) {
-      return (
-        id: id,
-        deskNumber: deskNumber,
-      );
-    }
-    return null;
-  }
-
-  @override
-  Future<Either<RepositoryException, Unit>> getDeskAssignment() async {
-    try {
-      final Response(data: List(first: data)) = await restClient.auth
-          .get('/attendantDeskAssignment', queryParameters: {
-        'user_id': "#userAuthRef",
-      });
-
-      return (data['desk_number']);
-    } on DioException catch (e, s) {
-      log('Erro ao buscar número do guichê', error: e, stackTrace: s);
-      return Left(RepositoryException());
-    }
-  }
-}
