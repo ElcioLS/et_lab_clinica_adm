@@ -128,7 +128,7 @@ class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin {
                           },
                           child: const Text('CHAMAR OUTRA SENHA')),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(width: 16),
                     Expanded(
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
