@@ -36,3 +36,15 @@ Durante o evento pude notar uma evelução expressiva em meu nível de raciocín
 -  flutter_lints: ^2.0.0
 -  json_serializable: ^6.7.1
 -  build_runner: ^2.4.8
+
+
+![image](https://github.com/ElcioLS/et_lab_clinica_adm/assets/89614792/0c77c8bc-68d9-4c41-b569-af1dd91b785f)
+
+![image](https://github.com/ElcioLS/et_lab_clinica_adm/assets/89614792/2b480767-c508-48ae-a7ad-e4f08d003e18)
+
+![image](https://github.com/ElcioLS/et_lab_clinica_adm/assets/89614792/1d157fc4-8238-4398-af80-e28dc2dd423b)
+
+![image](https://github.com/ElcioLS/et_lab_clinica_adm/assets/89614792/9199dec0-17e1-4dad-8902-1bec18315ad4)
+
+![image](https://github.com/ElcioLS/et_lab_clinica_adm/assets/89614792/93cb12a4-cb3c-4c63-ad45-42460fbd52bd)
+
