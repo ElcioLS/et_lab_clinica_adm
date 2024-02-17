@@ -25,8 +25,8 @@ class DataItem extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-        const Text(
-          'value',
+        Text(
+          '$value',
           style: TextStyle(
             fontSize: 14,
             color: LabClinicaTheme.orangeColor,
